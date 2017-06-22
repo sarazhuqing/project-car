@@ -1,0 +1,12 @@
+<?php
+  header("Content-Type:application/json;charset=utf-8");
+   $user=$_REQUEST['uname'];
+   $pwd=$_REQUEST['upwd'];
+   if($user=='aa'&&$pwd=='123'){
+     $result=["code"=>1];
+     echo(json_encode($result));
+   }else{
+      $result=["code"=>2];
+    echo(json_encode($result));
+   }
+?>

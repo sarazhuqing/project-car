@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="icon " href="img/lo.ico"/>
+    <link rel="stylesheet" href="car.css"/>
+</head>
+<body>
+<div class="wrap">
+    <header id="header">
+        <div class="lf">
+            <img src="img/logo.png" alt=""/>
+        </div>
+        <div class="rt">
+            <ul>
+                <li>
+                    <h3>Select ur Language</h3>
+                </li>
+                <li>
+                    <select>
+                        <option value="">English</option>
+                        <option value="">Chinese</option>
+                    </select>
+                </li>
+                <li><h3>Currency:</h3></li>
+                <li><select >
+                    <option value="">US Dollar-USD</option>
+                    <option value="">RMB</option>
+                </select></li>
+            </ul>
+        </div>
+    </header>
+    <div class="cart">
+        <p class="cart-img1">
+            <a href="#">
+                <img src="img/header_cart.png" alt=""/>
+            </a>
+        </p>
+        <p>
+            <a>
+                <span>Cart</span>
+                <span style="color:red">(empty)</span>
+            </a>
+        </p>
+        <p >
+            <a href="#" class="login">
+                <img src="img/login.png" alt=""/>
+            </a>
+        </p>
+        <div class="show">
+            <form action="">
+                <input type="text" placeholder="Username" id="uname"/>
+                <input type="password" placeholder="Password" id="upwd"/>
+                <button id="btn-login">Continue</button>
+                <button id="btn-register">Reginster</button>
+            </form>
+        </div>
+        <h5 id="welcome">welcome：</h5>
+    </div>
+    <div class="r-show">
+        <div class="info">
+            <h1>Reginster</h1>
+            <form action="">
+                <div>
+                    <label >userName:</label>
+                    <input type="text" placeholder="uname" id="regist_name" />
+                    <span>用户名不宜太长</span>
+                </div>
+                <div><label for="upwd">password:</label>
+                    <input type="password" placeholder="password" id="regist_pwd"/>
+                    <span>密码长度在6-12之间</span>
+                </div>
+
+                <input type="submit" value="continue" id="submit"/>
+                <b class="close">x</b>
+            </form>
+        </div>
+    </div>
+    <nav id="nav">
+        <ul >
+            <li><a href="main.html">HOME</a></li>
+            <li><a href="maintains.html">MAINTAINS</a></li>
+            <li><a href="repa.html">REPAIRS</a></li>
+            <li><a href="contact.html">CONTANT</a></li>
+        </ul>
+        <div class="search">
+            <form action="">
+                <input type="text"/>
+                <input type="submit" value=""/>
+            </form>
+        </div>
+    </nav>
+    <section id="dg-container" class="dg-container">
+        <div class="dg-wrapper">
+        <a href="#"><img src="img/1.jpg" alt=""/></a>
+        <a href="#"><img src="img/2.jpg" alt=""/></a>
+        <a href="#"><img src="img/3.jpg" alt=""/></a>
+        <a href="#"><img src="img/4.jpg" alt=""/></a>
+        <a href="#"><img src="img/5.jpg" alt=""/></a>
+        <a href="#"><img src="img/6.jpg" alt=""/></a>
+        <a href="#"><img src="img/7.jpg" alt=""/></a>
+        <a href="#"><img src="img/8.jpg" alt=""/></a>
+        </div>
+		 <div id="product">
+            <ul></ul>
+             <ol class="pager">
+                 <!--<li class="active"><a href="#">1</a></li>
+                 <li><a href="#">2</a></li>
+                 <li><a href="#">3</a></li>
+                 <li><a href="#">4</a></li>-->
+             </ol>
+        </div>
+    </section>
+    <footer id="footer">
+        <a href="#">about pcgrdup|</a>
+        <a href="#">网站介绍|</a>
+        <a href="#">隐私政策|</a>
+        <a href="#">合作媒体|</a>
+        <a href="#">投稿指南|</a>
+        <a href="#">使用条款|</a>
+        <a href="#">网站律师|</a>
+        <a href="#">联系我们|</a>
+        <a href="#">车商帮加盟|</a>
+        <a href="#">招聘精英|</a>
+        <a href="#">网站地图|</a>
+        <a href="#">
+            <b>用户体验结果</b>
+        </a>
+        <div class="down">
+            <p><img src="img/g-footer-logo.png"/></p>
+            <div>
+                <p>未经授权禁止转载、摘编、复制或建立镜像，如有违反，追究法律责任。</p>
+                <p>增值电信业务经营许可证：粤B2-20040647</p>
+            </div>
+            <p><img src="img/logo1.png"/></p>
+        </div>
+    </footer>
+</div>
+    <script src="js/jquery-1.11.3.js"></script>
+    <script src="js/jquery.gallery.js"></script>
+    <script src="js/modernizr.custom.53451.js"></script>
+    <script>
+        $(function(){
+            var str=sessionStorage["loginUname"];
+            $("#welcome").html("welcome:"+(str===undefined?"":str));
+
+        });
+        $(function(){
+            $("#dg-container").gallery({
+                autoplay:true
+            });
+        });
+
+        $(function(){
+            $(".login").click(function(e){
+                e.preventDefault();
+                $(".show").slideToggle();
+            });
+
+            $('#btn-register').click(function(e){
+                e.preventDefault();
+                $(".r-show").show(1000);
+                $(".show").hide();
+            });
+            $(".close").click(function(){
+                $(".r-show").slideUp();
+            });
+
+            $('#btn-login').click(function(e){
+                e.preventDefault();
+                $(".show").slideUp();
+                var n=$("#uname").val();
+                var p=$("#upwd").val();
+                console.log(n);
+                console.log(p);
+                $.ajax({
+                    type:'GET',
+                    url:'data/select.php',/*select1为自定义的不经过数据库*/
+                    dataType:'json',
+                    data:{uname:n,upwd:p},
+                    success:function(result){
+                        console.log('获取到服务器返回的响应数据');
+                        console.log(result);
+                        if(result<0){
+                            alert("用户名或密码错误");
+                        }else{
+                            alert('登录成功！3s后自动跳转到登录页面');
+                            sessionStorage['loginUname']=n;
+                            location.href='main.html';
+                        }
+                    }
+                });
+
+            });
+
+            $("#submit").click(function(e){
+                e.preventDefault();
+                var n=$('#regist_name').val();//用户名
+                var p=$('#regist_pwd').val();
+                console.log(n);
+                console.log(p);
+                //将客户端数据异步提交服务器
+                $.ajax({
+                    type:'GET',
+                    url:"data/add.php",
+                    data:{uname:n, upwd:p},
+                    success:function(result){
+                        console.log("成功获取到异步返回的数据");
+                        console.log(result);
+                        if(result===true){
+                            alert('注册成功！3s后自动跳转到登录页面。。');
+                            setTimeout(function(){
+                                location.href='main.html';
+                            },3000);
+                        }else{
+                            alert('注册失败，请稍后重试！');
+                        }
+                    }
+                })
+            })
+
+        })
+    </script>
+    <script src="js/product.js"></script>
+</body>
+</html>

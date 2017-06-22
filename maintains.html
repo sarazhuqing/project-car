@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/angular.js"></script>
+    <link rel="icon " href="img/lo.ico"/>
+    <link rel="stylesheet" href="car.css"/>
+    <style>
+        @media screen and(min-width:992px)and(max-width:1199px) {
+            .wrap{
+                width:75%;
+            }
+            #nav li {
+                width:15%;
+            }
+
+        }
+        @media screen and(min-width:768px) and(max-width:991px){
+            .wrap{
+                width:75%;
+            }
+            #nav li {
+                width:15%;
+            }
+            #section>h1{
+                width:60%;
+            }
+            .car{
+                width:45%;
+                margin-right:5%;
+            }
+            .text{
+                width:50%;
+            }
+            .text>h2{
+                width:100%;
+            }
+
+        }
+        @media only screen and(max-width:767px){
+            .wrap{
+                width:75%;
+            }
+            #nav{width:80%;}
+            #nav li {
+                width:15%;
+            }
+            .car{
+                width:100%;
+            }
+            .text{
+                width:100%;
+            }
+
+
+        }
+
+    </style>
+</head>
+<body  ng-controller="myCtrl">
+<div class="wrap">
+    <div ng-include="'t/header.html'"></div>
+<section id="section">
+<h1>Why Us Importance Of Maintains</h1>
+    <div class="car">
+        <a href="index1.html"><img src="img/8.jpg" alt=""/></a>
+    </div>
+    <div class="text">
+        <h2>Lorem Ipsum Is Simply Dummy Text</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Autem cum, deleniti excepturi illo incidunt ipsam molestiae
+            nam numquam possimus provident quisquam repellat,ibus.
+            Consequuntur eveniet explicabo officiis rem sint.</p>
+        <button>Read More</button>
+    </div>
+    <div class="car">
+        <a href="#"><img src="img/2.jpg" alt=""/></a>
+    </div>
+    <div class="text">
+        <h2>Lorem Ipsum Is Simply Dummy Text</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Autem cum, deleniti excepturi illo incidunt ipsam molestiae
+            nam numquam possimus provident quisquam repellat,ibus.
+            Consequuntur eveniet explicabo officiis rem sint.</p>
+        <button>Read More</button>
+    </div>
+    <div class="car">
+        <a href="#"><img src="img/3.jpg" alt=""/></a>
+    </div>
+    <div class="text">
+        <h2>Lorem Ipsum Is Simply Dummy Text</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Autem cum, deleniti excepturi illo incidunt ipsam molestiae
+            nam numquam possimus provident quisquam repellat,ibus.
+            Consequuntur eveniet explicabo officiis rem sint.</p>
+        <button>Read More</button>
+    </div>
+    <div ng-repeat="tmp in list">
+        <div class="car">
+            <a href="#"><img ng-src="{{tmp.imgUrl}}" alt=""/></a>
+        </div>
+        <div class="text">
+            <h2>{{tmp.title}}</h2>
+            <p>{{tmp.content}}</p>
+            <button>Read More</button>
+        </div>
+    </div>
+    <button ng-click="loadMore()" id="btn">加载更多</button>
+</section>
+    <div ng-include="'t/footer.html'" id="footer"></div>
+</div>
+<script>
+    var app=angular.module('myApp',['ng']);
+    app.controller('myCtrl',['$scope',function($scope){
+        $scope.list=[
+            {imgUrl:' img/3.jpg',title:'Lorem Ipsum Is Simply Dummy Text',
+                    content:'Lorem ipsum dolor sit amet, consectetur adipisicing ' +
+                    'elit Autem cum, deleniti excepturi illo incidunt ipsam molestiae ' +
+                    'Autem cum, deleniti excepturi illo incidunt ipsam molestiae Autem ' +
+                    'cum, deleniti excepturi illo incidunt ipsam molestiae'}
+        ];
+        $scope.loadMore=function(){
+            $scope.list.push({imgUrl:' img/3.jpg',title:'Lorem Ipsum Is Simply Dummy Text',
+                content:'Lorem ipsum dolor sit amet, consectetur adipisicing ' +
+                'elit Autem cum, deleniti excepturi illo incidunt ipsam molestiae ' +
+                'Autem cum, deleniti excepturi illo incidunt ipsam molestiae Autem ' +
+                'cum, deleniti excepturi illo incidunt ipsam molestiae'})
+        }
+    }])
+
+</script>
+</body>
+</html>
